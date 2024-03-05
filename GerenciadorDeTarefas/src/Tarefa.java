@@ -3,18 +3,24 @@ import java.util.Objects;
 
 public class Tarefa{
 
+    private int idTarefa;
     private String titulo;
     private String descricao;
     private Date prazo;
     private Prioridade prioridade;
 
-    Tarefa(String titulo, String descricao, Date prazo, Prioridade prioridade){
+    Tarefa(int idTarefa, String titulo, String descricao, Date prazo, Prioridade prioridade){
     	
+        this.idTarefa = idTarefa;
     	this.titulo = titulo;
         this.descricao = descricao;
         this.prazo = prazo;
         this.prioridade = prioridade;
 
+    }
+
+    public int getIdTarefa(){
+        return this.idTarefa;
     }
 
     public String getTitulo(){

@@ -15,8 +15,9 @@ public class TestUsuario {
 	
 	Usuario usuario = new Usuario();
 	
+	Date dataPassada = new Date(2023,01,01);
 	Date dataAtual = Date.now();
-	Date dataProxima = new Date(2023, 03, 06);
+	Date dataProxima = new Date(2023, 03, 21);
 	Date dataDistante = new Date (2023, 04, 21);
 	Date finalAno = new Date(2023,12,30);
 	
@@ -32,105 +33,106 @@ public class TestUsuario {
     
 	@Test
 	public void adicionaNovaTarefaValida() {
-		usuario.adicionarTarefa(tarefa1);
-		assertEquals(novaTarefa, usuario.getTarefas()[0]);
+		usuario.adicionarTarefa("Comprar cuscuz","e ovos se o preço for bom",dataAtual,Prioridade.BAIXA);
+		assertEquals(tarefa1, usuario.getTarefas()[0]);
 		assertEquals(1, usuario.getTarefas().length);
 	}
 	
 	@Test
 	public void excluiTarefas() {
-		usuario.excluirTarefa(tarefa1);
+		usuario.excluirTarefa(0);
 		assertEquals(0,usuario.getTarefas().length);
 	}
 	
 	@Test
 	public void adicionaTarefaRepetida() {
-		usuario.adicionarTarefa(tarefa1);
-		assertFalse(usuario.adicionarTarefa(tarefa1));
+		usuario.adicionarTarefa("Comprar cuscuz","e ovos se o preço for bom",dataAtual,Prioridade.BAIXA);
+		assertFalse(usuario.adicionarTarefa("Comprar cuscuz","e ovos se o preço for bom",dataAtual,Prioridade.BAIXA));
 		assertEquals(1, usuario.getTarefas().length);
+		assertEquals(tarefa1, usuario.getTarefa(1));
 	}
 	
 	@Test
 	public void adicionaNovaTarefaValida2() {
-		usuario.adicionarTarefa(tarefa2);
+		usuario.adicionarTarefa("Atividade a entregar", "VeV", dataProxima, Prioridade.MEDIA);
 		assertEquals(2, usuario.getTarefas().length);
 	}
 	
 	@Test
 	public void modificacaoInvalidaDeTituloComTituloInvalido() {
-		usuario.modificarTituloTarefa(tarefa1, null);
-		assertEquals(tarefa1.getTitulo(),usuario.getTarefas()[1].getTitulo());
+		usuario.modificarTituloTarefa(1, null);
+		assertEquals(tarefa1.getTitulo(),usuario.getTarefa(1).getTitulo());
 	}
 	
 	@Test
-	public void modificacaoInvalidaDeTituloComTarefaInvalida() {
+	public void modificacaoInvalidaDeTituloComIdInvalida() {
 		usuario.modificarTituloTarefa(null, "Comprar macarrão");
-		assertEquals(tarefa1.getTitulo(),usuario.getTarefas()[1].getTitulo());
+		assertEquals(tarefa1.getTitulo(),usuario.getTarefa(1).getTitulo());
 	}
 	
 	@Test
-	public void modificacaoInvalidaDeDescricaoTarefaInvalida() {
+	public void modificacaoInvalidaDeDescricaoIdInvalida() {
 		usuario.modificarDescricaoTarefa(null, "Comprar macarrão");
-		assertEquals(tarefa1.getDescricao(), usuario.getTarefas()[1].getDescricao());
+		assertEquals(tarefa1.getDescricao(), usuario.getTarefa(1).getDescricao());
 	}
 	
 	@Test
-	public void modificacaoInvalidaDePrazoTarefaInvalida() {
-		usuario.modificarPrazoTarefa(null, dataAtual);
-		assertEquals(tarefa1.getPrazo(), usuario.getTarefas()[1].getPrazo());
+	public void modificacaoInvalidaDePrazoTarefaInvalidoPassado() {
+		usuario.modificarPrazoTarefa(1, dataPassada);
+		assertEquals(tarefa1.getPrazo(), usuario.getTarefa(1).getPrazo());
 	}
 	
 	@Test
-	public void modificacaoInvalidaDePrazoDataInvalida() {
-		usuario.modificarPrazoTarefa(tarefa1, null);
-		assertEquals(tarefa1.getPrazo(), usuario.getTarefas()[1].getPrazo());
+	public void modificacaoInvalidaDePrazoDataInvalidoNull() {
+		usuario.modificarPrazoTarefa(1, null);
+		assertEquals(tarefa1.getPrazo(), usuario.getTarefa(1).getPrazo());
 	}
 
 	@Test
 	public void modificacaoInvalidaDePrioridadeComPrioridadeInvalida() {
-		usuario.modificarPrioridade(tarefa1, null);
-		assertEquals(tarefa1.getPrioridade(), usuario.getTarefas()[1].getPrioridade());
+		usuario.modificarPrioridade(1, null);
+		assertEquals(tarefa1.getPrioridade(), usuario.getTarefa(1).getPrioridade());
 	}
 	
 	@Test
-	public void modificacaoInvalidaDePrioridadeComTarefaInvalida() {
-		usuario.modificarPrioridade(null, Prioridade.ALTA);
-		assertEquals(tarefa1.getPrioridade(), usuario.getTarefas()[1].getPrioridade());
+	public void modificacaoInvalidaDePrioridadeComIdInvalida() {
+		usuario.modificarPrioridade(-1, Prioridade.ALTA);
+		assertEquals(tarefa1.getPrioridade(), usuario.getTarefa(1).getPrioridade());
 	}
 	
 	@Test
 	public void modificacaoValidaDeTitulo() {
-		usuario.modificarTituloTarefa(tarefa1, "Comprar macarrão");
-		assertNotEquals(tarefa1.getTitulo(), usuario.getTarefas()[1].getTitulo());
+		usuario.modificarTituloTarefa(1, "Comprar macarrão");
+		assertNotEquals(tarefa1.getTitulo(), usuario.getTarefa(1).getTitulo());
 	}
 
 	@Test
 	public void modificacaoValidaDeDescricao() {
-		usuario.modificarDescricaoTarefa(tarefa1, "");
-		assertNotEquals(tarefa1.getDescricao(), usuario.getTarefas()[1].getDescricao());
+		usuario.modificarDescricaoTarefa(1, "");
+		assertNotEquals(tarefa1.getDescricao(), usuario.getTarefa(1).getDescricao());
 		
 	}
 
 	@Test
 	public void modificacaoValidaDePrazo() {
-		usuario.modificarPrazoTarefa(tarefa1, dataProxima);
-		assertNotEquals(tarefa1.getPrazo(), usuario.getTarefas()[1].getPrazo());
+		usuario.modificarPrazoTarefa(1, dataProxima);
+		assertNotEquals(tarefa1.getPrazo(), usuario.getTarefa(1).getPrazo());
 	}
 
 	@Test
 	public void modificacaoValidaDePrioridade() {
-		usuario.modificarPrioridade(tarefa1, Prioridade.MEDIA);
-		assertNotEquals(tarefa1.getPrioridade(), usuario.getTarefas()[1].getPrioridade());
+		usuario.modificarPrioridade(1, Prioridade.MEDIA);
+		assertNotEquals(tarefa1.getPrioridade(), usuario.getTarefa(2).getPrioridade());
 	}
 
 	@Test
 	public void organizacaoDeTarefasFunciona() {
-		
+
 		usuario = new Usuario();
-		usuario.adicionarTarefa(tarefa1);
-		usuario.adicionarTarefa(tarefa2);
-		usuario.adicionarTarefa(tarefa3);
-		usuario.adicionarTarefa(tarefa4);
+		usuario.adicionarTarefa("Comprar cuscuz","e ovos se o preço for bom",dataAtual,Prioridade.BAIXA);
+		usuario.adicionarTarefa("Atividade a entregar", "VeV", dataProxima, Prioridade.MEDIA);
+		usuario.adicionarTarefa("Pagar boletos", "Plano de saude vence primeiro", dataDistante, Prioridade.ALTA);
+		usuario.adicionarTarefa("Vacinar o gato", "", finalAno, Prioridade.ALTA);
 		
 		bool verificador = true;
 		Tarefa[] tarefasTeste = {tarefa3, tarefa4, tarefa2, tarefa1};
