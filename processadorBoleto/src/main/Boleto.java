@@ -3,9 +3,9 @@ package main;
 public class Boleto {
     private String codigo;
     private String data;
-    private double valorPago;
+    private Float valorPago;
 
-    public Boleto(String codigo, String data, double valorPago) {
+    public Boleto(String codigo, String data, Float valorPago) {
         this.codigo = codigo;
         this.data = data;
         this.valorPago = valorPago;

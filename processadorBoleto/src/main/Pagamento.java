@@ -1,11 +1,11 @@
 package main;
 
 public class Pagamento {
-    private double valorPago;
+    private Float valorPago;
     private String data;
     private String tipo;
 
-    public Pagamento(double valorPago, String data, String tipo) {
+    public Pagamento(Float valorPago, String data, String tipo) {
         this.valorPago = valorPago;
         this.data = data;
         this.tipo = tipo;

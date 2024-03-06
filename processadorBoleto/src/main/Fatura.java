@@ -2,11 +2,11 @@ package main;
 
 public class Fatura {
     private String data;
-    private double valorTotal;
+    private Float valorTotal;
     private String nomeCliente;
     private boolean paga;
 
-    public Fatura(String data, double valorTotal, String nomeCliente) {
+    public Fatura(String data, Float valorTotal, String nomeCliente) {
         this.data = data;
         this.valorTotal = valorTotal;
         this.nomeCliente = nomeCliente;
