@@ -2,9 +2,10 @@ Faltas e melhorias sugeridas
 
 Projeto:
 
-Não existem quaisquer métodos ou expressões que verifiquem a validade dos valores utilizados pelas classes. É possível fornecer ao sistema códigos de barras vazios ou com caracteres não numéricos, valores negativos, e datas vazias, por exemplo, ou invocar construtores que podem ter somente null como argumentos.
+Não existem quaisquer métodos ou expressões que verifiquem a validade dos valores utilizados pelas classes. É possível fornecer ao sistema códigos de barras vazios ou com caracteres não numéricos, valores negativos, e datas vazias,
+por exemplo, ou invocar construtores que podem ter somente null como argumentos.
 
-Caso deseje manter os vários campos "data" como String, sugiro o uso de RegEx, ou a implementação de um método que verifique
+Caso deseje manter os vários campos "data" como String, sugiro o uso de RegEx, ou a implementação de um método que verifique a validade de datas providas.
 
 Classe: Boleto
 Sugestão: criar uma classe CodigoDeBarras (Caso este fosse um projeto mais complexo, CodigoDeBarras seria melhor como uma classe abstrata com várias subclasses, cada uma implementando um tipo diferente de código de barras);
