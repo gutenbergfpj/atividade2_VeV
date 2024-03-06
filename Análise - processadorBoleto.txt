@@ -1,0 +1,23 @@
+Faltas e melhorias sugeridas
+
+Projeto:
+
+Não existem quaisquer métodos ou expressões que verifiquem a validade dos valores utilizados pelas classes. É possível fornecer ao sistema códigos de barras vazios ou com caracteres não numéricos, valores negativos, e datas vazias, por exemplo, ou invocar construtores que podem ter somente null como argumentos.
+
+Caso deseje manter os vários campos "data" como String, sugiro o uso de RegEx, ou a implementação de um método que verifique
+
+Classe: Boleto
+Sugestão: criar uma classe CodigoDeBarras (Caso este fosse um projeto mais complexo, CodigoDeBarras seria melhor como uma classe abstrata com várias subclasses, cada uma implementando um tipo diferente de código de barras);
+Sugestão: usar o tipo java.time.Date para o campo "data", no lugar de String; caso
+Sugestão: usar float para valorPago, visto que os valores em questão utilizam somente duas casas decimais.
+
+Classe: Fatura
+Sugestão: usar o tipo java.time.Date para o campo "data", no lugar de String;
+Sugestão: usar float para valorTotal, visto que os valores em questão utilizam somente duas casas decimais.
+
+Classe: Pagamento
+Sugestão: usar float para valorPago, visto que os valores em questão utilizam somente duas casas decimais.
+Sugestão: usar o tipo java.time.Date para o campo "data", no lugar de String.
+
+Classe: Main
+Nada a comentar. Invoca métodos e classes inexistentes mas, como o projeto ainda está em estado de implementação, não é necessário apontar isto como falta.
